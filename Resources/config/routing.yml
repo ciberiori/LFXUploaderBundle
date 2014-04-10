@@ -1,0 +1,3 @@
+lfx_fx_uploader_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: LFXFxUploaderBundle:Default:index }

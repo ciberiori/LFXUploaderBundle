@@ -1,0 +1,21 @@
+parameters:
+    lfx_uploader.class: LFX\FxUploaderBundle\Core\UploaderService
+    lfx_finder: Symfony\Component\Finder\Finder
+    lfx_response.class: LFX\FxUploaderBundle\Core\UploaderResponseService
+    
+services:
+   lfx_finder:
+       class: %lfx_finder%
+   lfx_uploader:
+       class: %lfx_uploader.class%
+       calls:
+         - [ setFinder, ["@lfx_finder"]]
+         - [ setFilesystem, ["@filesystem"]]
+         - [ setRequest, ["@request_stack"]]
+   lfx_uploader_response:
+       class: %lfx_response.class%
+       calls:
+         - [ setFinder, ["@lfx_finder"]]
+         - [ setFilesystem, ["@filesystem"]]
+         - [ setRequest, ["@request_stack"]]
+         - [ setImagine, ["@imagine"]]
